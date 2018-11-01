@@ -31,18 +31,16 @@
     	padding: 10px;
     	border: solid black 1px;
     }
-
-    /* {
-    	border: solid black 1px;
-    } */
 	</style>
-  <!-- <link rel="stylesheet"  href="style.css" type="text/css"  media="screen" /> -->
 </head>
 
 <body>
   <?php
     include("config.inc.php");
     include("functions.inc.php");
+
+    // Initialisation
+    $mysqli = mysqli_connect($host, $user, $pass) or die("Problème de création de la base : ".mysqli_error());
 
     // Initialisation des tableaux qui parametrent l'interface
     $ListeMarques  = array("Opel","Peugeot","Renault");
