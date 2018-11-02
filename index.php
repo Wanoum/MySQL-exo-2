@@ -31,6 +31,10 @@
     	padding: 10px;
     	border: solid black 1px;
     }
+
+    .search {
+      min-width: 50%;
+    }
 	</style>
 </head>
 
@@ -59,7 +63,7 @@
     			<li><a href="?p=navigation&attributChoisi=couleur">couleur</a></li>
     		</ul>
     	</div>
-    	<div style="background-color: #ffc">
+    	<div class="search" style="background-color: #ffc">
     		<h2>Recherche&nbsp;:</h2>
     		<form method="get" action="">
     		<input type="hidden" name="p" value="recherche" />
@@ -67,9 +71,10 @@
 
     		<?php
      	    foreach($ListeMarques as $Marque) {
+            $ListeMarquesChoisies = isset($_GET['listeMarquesChoisies']) ? $_GET['listeMarquesChoisies'] : array();
             echo '
       			<input type="checkbox" name="listeMarquesChoisies[]" value="'.$Marque.'"'
-      			.(in_array($Marque,$_GET['listeMarquesChoisies'])?'checked="checked"':'')
+      			.(in_array($Marque, $ListeMarquesChoisies)?'checked="checked"':'')
       			.'>'.$Marque;
       		}
   	    ?>
@@ -77,9 +82,10 @@
     		Couleur&nbsp;:
     	    <?php
       	    foreach($ListeCouleurs as $Couleur) {
+              $listeCouleursChoisies = isset($_GET['listeCouleursChoisies']) ? $_GET['listeCouleursChoisies'] : array();
               echo '
       			<input type="checkbox" name="listeCouleursChoisies[]" value="'.$Couleur.'"'
-      			.(in_array($Couleur,$_GET['listeCouleursChoisies'])?'checked="checked"':'')
+      			.(in_array($Couleur, $listeCouleursChoisies)?'checked="checked"':'')
       			.'> '.$Couleur;
             }
           ?>
@@ -87,7 +93,7 @@
     		Construite après&nbsp;:
     		<select name="anneeMinimum" size="1">
     		<?php
-      		for($i = 1974; $i < 2002; $i = $i + 2) {
+      		for($i = 1973; $i < 2002; $i = $i + 2) {
             echo '
       			<option '.($i==$_GET['anneeMinimum']?'selected="selected"':'').'>'.$i.'</option>';
       		}
