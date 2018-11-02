@@ -15,12 +15,12 @@
   echo "<ul>";
   while ($row = mysqli_fetch_assoc($result)) {
     print("<li>
-      <a href=\"\">".$row['ref']."</a>
-      <a href=\"\">".$row['marque']."</a>
-      <a href=\"\">".$row['type']."</a>
-      <a href=\"\">".$row['couleur']."</a>
-      <a href=\"\">".$row['annee']."</a>
-      <a href=\"\">".$row['prix']."</a>
+      <a href=\"?p=listeAnnonces&attributChoisi=ref&valeurChoisie=".$row['ref']."\">".$row['ref']."</a>
+      <a href=\"?p=listeAnnonces&attributChoisi=marque&valeurChoisie=".$row['marque']."\">".$row['marque']."</a>
+      <a href=\"?p=listeAnnonces&attributChoisi=type&valeurChoisie=".$row['type']."\">".$row['type']."</a>
+      <a href=\"?p=listeAnnonces&attributChoisi=couleur&valeurChoisie=".$row['couleur']."\">".$row['couleur']."</a>
+      <a href=\"?p=listeAnnonces&attributChoisi=annee&valeurChoisie=".$row['annee']."\">".$row['annee']."</a>
+      <a href=\"?p=listeAnnonces&attributChoisi=prix&valeurChoisie=".$row['prix']."\">".$row['prix']."</a>
     </li>");
   }
   echo "</ul>";
