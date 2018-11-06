@@ -95,7 +95,7 @@
     		<?php
       		for($i = 1973; $i < 2002; $i = $i + 2) {
             echo '
-      			<option '.($i==$_GET['anneeMinimum']?'selected="selected"':'').'>'.$i.'</option>';
+      			<option '.($i == $_GET['anneeMinimum']?'selected="selected"':'').'>'.$i.'</option>';
       		}
     		?>
     		</select>
@@ -110,7 +110,7 @@
     		<?php
       		foreach(['ref','marque','type','couleur','annee','prix'] as $attribut) {
             echo '
-      			<option '.($attribut==$_GET['tri']?'selected="selected"':'').'>'.$attribut.'</option>';
+      			<option '.($attribut == $_GET['tri']?'selected="selected"':'').'>'.$attribut.'</option>';
       		}
     		?>
     		</select>

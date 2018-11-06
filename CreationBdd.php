@@ -4,7 +4,7 @@
   mysqli_select_db($mysqli, $base) or die("Impossible de sélectionner la base : $base");
 
   // Queries
-  $stmt_create_table = "CREATE TABLE `Automobiles`.`Vehicule` (
+  $stmt_create_table = "CREATE TABLE `Vehicule` (
     `ref` INT NOT NULL AUTO_INCREMENT,
     `marque` VARCHAR(120) NOT NULL,
     `type` VARCHAR(120) NOT NULL,
@@ -13,25 +13,15 @@
     `prix` INT NOT NULL,
     PRIMARY KEY (`ref`)
   ) ENGINE = InnoDB;";
-  $stmt_insert_data = "INSERT INTO `Vehicule` (`marque`, `type`, `couleur`, `annee`, `prix`)
-    VALUES ";
-    // ('\"r', '\"r', '\"r', '23', '23'), (NULL, '\"r', '\"r', '\"r', '23', '23')
 
   query($mysqli, $stmt_create_table);
 
   // Extract data from other file
-  $arr_data = file('Vehicule.txt');
+  $string_data = file_get_contents('Vehicule.txt');
+  $string_data_formated = str_replace(array("\r\n"), "'), ('", $string_data);
+  $string_data_formated = str_replace("|", "', '", $string_data_formated);
 
-  foreach ($arr_data as $offers) {
-    $arr_exploded = explode("|", $offers);
-    $string_imploded = implode("', '", $arr_exploded);
-
-    $stmt_insert_data .= "('".$string_imploded."'), ";
-  }
-
-  // TODO: Find an alternative
-  $stmt_insert_data .= "('', '', '', '', '');";
-
+  $stmt_insert_data = "INSERT INTO `Vehicule` (`marque`, `type`, `couleur`, `annee`, `prix`) VALUES ('$string_data_formated');";
   query($mysqli, $stmt_insert_data);
 
   // Insertion successful or not?
